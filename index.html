@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskboard · Widget-Demo</title>
+    <script type="module" crossorigin src="./assets/index-CHr_eReQ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/style-N_WUZCKZ.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./">☑ Taskboard <span>DEMO</span></a>
+      <span>Dein kleiner Widget-Spielplatz</span>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">EINFACH MAL AUSPROBIEREN</p>
+        <h1>Kleine Aufgaben.<br />Direktes Feedback.</h1>
+        <p>Eine kleine App ohne Backend. Erstelle Aufgaben, hake sie ab und teste das Feedback-Widget an echten Elementen.</p>
+      </section>
+
+      <div class="layout">
+        <section class="card" aria-labelledby="tasks-title">
+          <div class="section-heading"><h2 id="tasks-title">Meine Aufgaben</h2><span id="task-count" class="badge"></span></div>
+          <form id="task-form">
+            <label for="task-title">Neue Aufgabe</label>
+            <div class="input-row">
+              <input id="task-title" name="title" placeholder="Was steht heute an?" maxlength="120" required />
+              <button class="primary" type="submit">Hinzufügen</button>
+            </div>
+          </form>
+          <div class="filters" role="group" aria-label="Aufgaben filtern">
+            <button type="button" data-filter="all" aria-pressed="true">Alle</button>
+            <button type="button" data-filter="open" aria-pressed="false">Offen</button>
+            <button type="button" data-filter="done" aria-pressed="false">Erledigt</button>
+          </div>
+          <ul id="task-list" aria-label="Aufgaben"></ul>
+          <p id="empty-state" class="empty" hidden>Hier gibt es gerade keine Aufgaben.</p>
+          <p id="task-status" class="status" role="status" aria-live="polite"></p>
+          <p class="footnote">Nur Demo-Daten. Die Aufgaben werden beim Neuladen zurückgesetzt.</p>
+        </section>
+
+        <aside class="card" aria-labelledby="widget-title">
+          <p class="eyebrow">FEEDBACK-WIDGET</p>
+          <h2 id="widget-title">Deine Testrunde</h2>
+          <ol class="steps">
+            <li>Öffne das Feedback-Panel.</li>
+            <li>Wähle „Stelle markieren“ und klicke z. B. auf eine Aufgabe.</li>
+            <li>Kommentiere die Stelle und kopiere den JSON-Report.</li>
+          </ol>
+          <button id="demo-open" class="primary full" type="button">Feedback öffnen</button>
+          <hr />
+          <h3>Widget anpassen</h3>
+          <label for="widget-position">Button-Position</label>
+          <select id="widget-position">
+            <option value="bottom-right">Unten rechts</option>
+            <option value="bottom-left">Unten links</option>
+            <option value="top-right">Oben rechts</option>
+            <option value="top-left">Oben links</option>
+          </select>
+          <label for="widget-accent">Akzentfarbe</label>
+          <input id="widget-accent" type="color" value="#d95d54" />
+          <p class="footnote">Projekt, aktueller Filter und Aufgabenanzahl werden als Test-Kontext an den Report angehängt. Kein Versand, kein Tracking.</p>
+        </aside>
+      </div>
+      <footer>HTML + CSS + JavaScript · kein zusätzliches Framework · lokal testen</footer>
+    </main>
+    <script>
+      window.feedback = window.feedback || [];
+      window.feedback.push(["init", { project: "taskboard-demo" }]);
+      window.feedback.push(["add", "environment", "demo"]);
+    </script>
+  </body>
+</html>
