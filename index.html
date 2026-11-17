@@ -3,68 +3,112 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taskboard · Widget-Demo</title>
-    <script type="module" crossorigin src="./assets/index-CHr_eReQ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/style-N_WUZCKZ.css">
+    <meta name="theme-color" content="#285c45" />
+    <title>Übersicht · Taskboard</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-C5Pt1ssl.svg" />
+    <script type="module" crossorigin src="./assets/index-QqELwgoI.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/style-BfW_BQrx.css">
   </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="./">☑ Taskboard <span>DEMO</span></a>
-      <span>Dein kleiner Widget-Spielplatz</span>
-    </header>
-    <main>
-      <section class="intro">
-        <p class="eyebrow">EINFACH MAL AUSPROBIEREN</p>
-        <h1>Kleine Aufgaben.<br />Direktes Feedback.</h1>
-        <p>Eine kleine App ohne Backend. Erstelle Aufgaben, hake sie ab und teste das Feedback-Widget an echten Elementen.</p>
-      </section>
-
-      <div class="layout">
-        <section class="card" aria-labelledby="tasks-title">
-          <div class="section-heading"><h2 id="tasks-title">Meine Aufgaben</h2><span id="task-count" class="badge"></span></div>
-          <form id="task-form">
-            <label for="task-title">Neue Aufgabe</label>
-            <div class="input-row">
-              <input id="task-title" name="title" placeholder="Was steht heute an?" maxlength="120" required />
-              <button class="primary" type="submit">Hinzufügen</button>
-            </div>
-          </form>
-          <div class="filters" role="group" aria-label="Aufgaben filtern">
-            <button type="button" data-filter="all" aria-pressed="true">Alle</button>
-            <button type="button" data-filter="open" aria-pressed="false">Offen</button>
-            <button type="button" data-filter="done" aria-pressed="false">Erledigt</button>
+  <body class="min-h-screen bg-page font-sans text-ink antialiased">
+    <a href="#main-content" data-skip-content class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-surface focus:p-4">Zum Inhalt springen</a>
+    <div class="min-h-screen w-full lg:grid lg:grid-cols-[240px_minmax(0,1fr)]">
+      <aside class="border-b border-line bg-surface p-5 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:border-b-0 lg:border-r lg:p-6">
+        <a class="flex items-center gap-3 text-xl font-bold tracking-tight" href="#/overview" aria-label="Taskboard – Übersicht">
+          <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3e%3crect%20width='64'%20height='64'%20rx='18'%20fill='%23285c45'/%3e%3crect%20x='15'%20y='15'%20width='34'%20height='34'%20rx='9'%20fill='none'%20stroke='%23cde7d5'%20stroke-width='3'/%3e%3cpath%20d='m23%2032%206%206%2013-14'%20fill='none'%20stroke='%23fff'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='5'/%3e%3c/svg%3e" alt="" width="36" height="36" />Taskboard<span class="rounded-md bg-brand-50 px-2 py-1 text-[10px] tracking-widest text-brand-700">DEMO</span>
+        </a>
+        <p class="mb-3 mt-9 hidden text-[10px] font-bold uppercase tracking-[.2em] text-muted lg:block">Workspace</p>
+        <nav aria-label="Hauptnavigation" class="mt-5 flex gap-1 overflow-x-auto lg:mt-0 lg:flex-col">
+          <a href="#/overview" data-nav="overview" class="nav-link"><span aria-hidden="true">◫</span> Übersicht</a>
+          <a href="#/tasks" data-nav="tasks" class="nav-link"><span aria-hidden="true">☑</span> Aufgaben <span id="nav-task-count" class="ml-auto rounded-md bg-brand-50 px-2 text-xs text-brand-700"></span></a>
+          <a href="#/projects" data-nav="projects" class="nav-link"><span aria-hidden="true">▦</span> Projekte</a>
+          <a href="#/team" data-nav="team" class="nav-link"><span aria-hidden="true">♧</span> Team</a>
+          <a href="#/settings" data-nav="settings" class="nav-link"><span aria-hidden="true">⚙</span> Einstellungen</a>
+        </nav>
+        <div class="mt-auto hidden pt-8 lg:block">
+          <div class="rounded-2xl bg-brand-50 p-4 text-sm text-brand-900">
+            <p class="font-semibold">Deine Meinung zählt.</p>
+            <p class="mb-4 mt-2 text-xs leading-5">Markiere eine Stelle, teste neue Styles oder skizziere deine Idee.</p>
+            <button data-open-feedback type="button" class="btn-primary w-full text-xs">Feedback geben ↗</button>
           </div>
-          <ul id="task-list" aria-label="Aufgaben"></ul>
-          <p id="empty-state" class="empty" hidden>Hier gibt es gerade keine Aufgaben.</p>
-          <p id="task-status" class="status" role="status" aria-live="polite"></p>
-          <p class="footnote">Nur Demo-Daten. Die Aufgaben werden beim Neuladen zurückgesetzt.</p>
-        </section>
+          <div class="mt-6 flex items-center gap-3"><span data-profile-initials class="avatar">JD</span><div><p data-profile-name class="text-sm font-semibold">Jamie Demo</p><p class="text-xs text-muted">Demo-Workspace</p></div></div>
+        </div>
+      </aside>
 
-        <aside class="card" aria-labelledby="widget-title">
-          <p class="eyebrow">FEEDBACK-WIDGET</p>
-          <h2 id="widget-title">Deine Testrunde</h2>
-          <ol class="steps">
-            <li>Öffne das Feedback-Panel.</li>
-            <li>Wähle „Stelle markieren“ und klicke z. B. auf eine Aufgabe.</li>
-            <li>Kommentiere die Stelle und kopiere den JSON-Report.</li>
-          </ol>
-          <button id="demo-open" class="primary full" type="button">Feedback öffnen</button>
-          <hr />
-          <h3>Widget anpassen</h3>
-          <label for="widget-position">Button-Position</label>
-          <select id="widget-position">
-            <option value="bottom-right">Unten rechts</option>
-            <option value="bottom-left">Unten links</option>
-            <option value="top-right">Oben rechts</option>
-            <option value="top-left">Oben links</option>
-          </select>
-          <label for="widget-accent">Akzentfarbe</label>
-          <input id="widget-accent" type="color" value="#d95d54" />
-          <p class="footnote">Projekt, aktueller Filter und Aufgabenanzahl werden als Test-Kontext an den Report angehängt. Kein Versand, kein Tracking.</p>
-        </aside>
+      <div class="min-w-0">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface px-5 py-4 sm:px-9">
+          <p class="text-sm text-muted">Workspace <span class="mx-2 text-line">/</span> <span id="breadcrumb" class="font-medium text-ink">Übersicht</span></p>
+          <div class="flex items-center gap-3"><span class="hidden text-xs text-muted sm:inline">Alles lokal. Alles zum Testen.</span><button data-open-feedback type="button" class="btn-secondary text-xs">Feedback öffnen</button></div>
+        </header>
+        <main id="main-content" tabindex="-1" class="w-full px-5 py-8 outline-none sm:px-9 sm:py-10">
+          <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div><p class="eyebrow">DEIN DEMO-WORKSPACE</p><h1 id="page-title" tabindex="-1" class="mt-2 text-3xl font-semibold tracking-tight outline-none sm:text-4xl">Guten Morgen, Jamie.</h1><p id="page-description" class="mt-3 max-w-2xl text-sm leading-6 text-muted">Ein guter Tag, um Ideen voranzubringen. Hier ist dein Überblick.</p></div>
+            <a href="#/tasks" id="page-action" data-reset-tasks class="btn-primary">Aufgaben ansehen ↗</a>
+          </div>
+
+          <section data-page="overview" aria-label="Übersicht">
+            <div class="grid gap-4 sm:grid-cols-3">
+              <article class="card"><p class="text-sm text-muted">Offene Aufgaben</p><p data-open-count class="mt-3 text-4xl font-semibold tracking-tight">0</p><p class="mt-3 text-xs text-muted">Schritt für Schritt zum Ziel</p></article>
+              <article class="card"><p class="text-sm text-muted">Aktive Projekte</p><p data-project-count class="mt-3 text-4xl font-semibold tracking-tight">0</p><p class="mt-3 text-xs text-muted">Platz für deine nächste Idee</p></article>
+              <article class="card"><p class="text-sm text-muted">Aufgaben erledigt</p><p data-done-count class="mt-3 text-4xl font-semibold tracking-tight">0</p><p class="mt-3 text-xs text-brand-700">Kleine Erfolge zählen auch.</p></article>
+            </div>
+            <div class="mt-6 grid items-start gap-6 xl:grid-cols-[1.5fr_1fr]">
+              <article class="card"><div class="flex items-center justify-between gap-3"><h2 class="section-title">Als Nächstes</h2><a href="#/tasks" data-reset-tasks class="text-xs font-semibold text-brand-700">Alle Aufgaben →</a></div><ul id="upcoming-tasks" class="mt-4 divide-y divide-line"></ul></article>
+              <article class="overflow-hidden rounded-2xl bg-brand-900 p-6 text-white"><span class="rounded-full border border-white/25 px-3 py-1 text-[10px] font-medium uppercase tracking-widest">Widget-Spielplatz</span><h2 class="mt-5 text-2xl font-semibold tracking-tight">Nicht nur anschauen.<br />Einfach ausprobieren.</h2><p class="mt-4 text-sm leading-6 text-white/75">Diese App ist absichtlich voller unterschiedlicher Elemente. Teste Feedback an Karten, Tabellen, Formularen und auf mehreren Seiten.</p><button data-open-feedback type="button" class="mt-6 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 hover:bg-brand-50">Testrunde starten ↗</button></article>
+            </div>
+            <article class="card mt-6"><h2 class="section-title">Was im Workspace passiert</h2><ol id="activity-list" class="mt-4 space-y-4 text-sm"></ol></article>
+          </section>
+
+          <section data-page="tasks" aria-label="Aufgaben" hidden>
+            <div class="grid items-start gap-6 xl:grid-cols-[1fr_280px]">
+              <article class="card min-w-0">
+                <div class="mb-5 flex items-center justify-between gap-3"><h2 class="section-title">Meine Aufgaben</h2><span id="task-count" class="badge"></span></div>
+                <form id="task-form" class="rounded-xl bg-page p-4">
+                  <label for="task-title" class="field-label">Neue Aufgabe</label>
+                  <input id="task-title" name="title" class="field" placeholder="Was steht heute an?" maxlength="120" required />
+                  <div class="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
+                    <div><label for="task-project" class="field-label">Projekt</label><select id="task-project" class="field"></select></div>
+                    <div><label for="task-priority" class="field-label">Priorität</label><select id="task-priority" class="field"><option value="normal">Normal</option><option value="high">Hoch</option><option value="low">Niedrig</option></select></div>
+                    <button class="btn-primary self-end" type="submit">Hinzufügen</button>
+                  </div>
+                </form>
+                <div class="my-5 flex flex-wrap items-center justify-between gap-3">
+                  <div role="group" aria-label="Aufgaben filtern" class="flex rounded-xl bg-page p-1"><button type="button" data-filter="all" aria-pressed="true" class="filter-btn">Alle</button><button type="button" data-filter="open" aria-pressed="false" class="filter-btn">Offen</button><button type="button" data-filter="done" aria-pressed="false" class="filter-btn">Erledigt</button></div>
+                  <div class="flex w-full flex-wrap gap-2 sm:w-auto"><div class="min-w-0 flex-1"><label for="task-project-filter" class="sr-only">Nach Projekt filtern</label><select id="task-project-filter" class="field"><option value="">Alle Projekte</option></select></div><div class="min-w-0 flex-1"><label for="task-search" class="sr-only">Aufgaben suchen</label><input id="task-search" type="search" class="field" placeholder="Aufgaben suchen …" /></div></div>
+                </div>
+                <ul id="task-list" aria-label="Aufgaben" class="divide-y divide-line"></ul>
+                <p id="empty-state" class="py-10 text-center text-sm text-muted" hidden>Keine passenden Aufgaben. Zeit für eine neue Idee?</p>
+                <p id="task-status" class="mt-4 min-h-5 text-sm text-brand-700" role="status"></p>
+              </article>
+              <aside class="card"><p class="eyebrow">KLEINER TESTPLAN</p><h2 class="section-title mt-3">Von der Idee zum Feedback</h2><ol class="mt-4 list-decimal space-y-3 pl-4 text-sm leading-6 text-muted"><li>Erstelle eine Aufgabe mit Projekt und Priorität.</li><li>Markiere eine Karte oder ändere ihren Stil im Widget.</li><li>Wechsle die Seite und ergänze weitere Stellen.</li><li>Öffne den Report und prüfe die Seiten-URLs.</li></ol><p class="mt-5 border-t border-line pt-4 text-xs leading-5 text-muted">Aufgaben und Projekte bleiben während dieser Sitzung erhalten. Neuladen setzt die Demo-Daten zurück.</p></aside>
+            </div>
+          </section>
+
+          <section data-page="projects" aria-label="Projekte" hidden>
+            <div class="mb-5 flex flex-wrap items-center justify-between gap-4"><p class="text-sm text-muted">Ein Ort für alles, was du vorhast.</p><button id="new-project" type="button" class="btn-primary">+ Neues Projekt</button></div>
+            <div id="project-grid" class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3"></div>
+            <p id="project-status" class="mt-4 min-h-5 text-sm text-brand-700" role="status"></p>
+          </section>
+
+          <section data-page="team" aria-label="Team" hidden>
+            <div class="mb-6 grid gap-4 sm:grid-cols-2"><article class="card"><p class="text-sm text-muted">Gemeinsam mehr erreichen</p><h2 class="mt-3 text-2xl font-semibold">Vier Köpfe. Viele gute Ideen.</h2><p class="mt-3 text-sm leading-6 text-muted">Ein fiktives Team für echte UI-Tests. Hier werden keine Einladungen oder Nachrichten verschickt.</p></article><article class="card"><p class="eyebrow">TEAM-PRINZIP</p><blockquote class="mt-3 text-xl font-medium leading-8">„Gutes Feedback beginnt mit einer konkreten Stelle.“</blockquote><p class="mt-4 text-xs text-muted">Probier es an einem Namen, Badge oder Tabellenkopf.</p></article></div>
+            <article class="card min-w-0"><div class="mb-5 flex flex-wrap items-center justify-between gap-4"><h2 class="section-title">Teammitglieder</h2><div><label for="team-search" class="sr-only">Team durchsuchen</label><input id="team-search" type="search" class="field" placeholder="Name oder Rolle suchen …" /></div></div><div class="overflow-x-auto"><table class="w-full text-left text-sm"><caption class="sr-only">Mitglieder des Demo-Teams</caption><thead class="border-b border-line text-xs text-muted"><tr><th scope="col" class="pb-3 font-medium">Mitglied</th><th scope="col" class="px-4 pb-3 font-medium">Rolle</th><th scope="col" class="pb-3 font-medium">Status</th></tr></thead><tbody id="team-list" class="divide-y divide-line"></tbody></table></div><p id="team-empty" class="py-8 text-center text-sm text-muted" hidden>Keine Teammitglieder gefunden.</p></article>
+          </section>
+
+          <section data-page="settings" aria-label="Einstellungen" hidden>
+            <div class="grid items-start gap-6 xl:grid-cols-2">
+              <article class="card"><h2 class="section-title">Dein Profil</h2><p class="mb-6 mt-2 text-sm leading-6 text-muted">Nur für diese Demo-Sitzung. Kein Konto, kein Backend.</p><form id="profile-form" class="space-y-4"><div><label for="profile-name" class="field-label">Anzeigename</label><input id="profile-name" name="displayName" class="field" value="Jamie Demo" required maxlength="60" autocomplete="off" /></div><div><label for="profile-role" class="field-label">Deine Rolle</label><select id="profile-role" class="field"><option>Produktdesign</option><option>Entwicklung</option><option>Projektmanagement</option></select></div><div><label for="profile-bio" class="field-label">Über dich</label><textarea id="profile-bio" class="field min-h-24" maxlength="300" placeholder="Woran arbeitest du gerade?"></textarea></div><button class="btn-primary" type="submit">Profil speichern</button><p id="profile-status" role="status" class="min-h-5 text-sm text-brand-700"></p></form><hr class="my-6 border-line" /><label for="demo-theme" class="field-label">Darstellung der Demo</label><select id="demo-theme" class="field"><option value="light">Hell</option><option value="dark">Dunkel</option></select><p class="mt-3 text-xs leading-5 text-muted">Echte CSS-Variablen und Tailwind-Utilities – auch zum Testen des Theme-Editors.</p></article>
+              <article class="card"><p class="eyebrow">FEEDBACK-WIDGET</p><h2 class="section-title mt-2">Dein Testlabor</h2><p class="mb-6 mt-3 text-sm leading-6 text-muted">Passe das Widget an. Die Einstellungen wirken auf allen Demo-Seiten.</p><div class="space-y-5"><div><label for="widget-language" class="field-label">Widget-Sprache</label><select id="widget-language" class="field"><option value="auto">Automatisch (Browser)</option><option value="de">Deutsch</option><option value="en">English</option></select></div><div><label for="widget-position" class="field-label">Button-Position</label><select id="widget-position" class="field"><option value="bottom-right">Unten rechts</option><option value="bottom-left">Unten links</option><option value="top-right">Oben rechts</option><option value="top-left">Oben links</option></select></div><div><label for="widget-accent" class="field-label">Akzentfarbe</label><input id="widget-accent" type="color" value="#d95d54" class="h-11 w-full cursor-pointer rounded-xl border border-line bg-surface p-1" /></div><button id="demo-open" data-open-feedback type="button" class="btn-primary w-full">Feedback öffnen</button></div><p class="mt-5 text-xs leading-5 text-muted">Seite, Filter und Aufgabenanzahl erscheinen als Test-Kontext im Report. Profiltexte werden nicht als Metadaten weitergegeben. Das Widget versendet nichts automatisch.</p></article>
+            </div>
+          </section>
+          <footer class="mt-10 flex flex-wrap justify-between gap-2 border-t border-line pt-5 text-xs text-muted"><span>Taskboard · Ein Spielplatz für dein Feedback</span><span>Tailwind CSS · 5 Seiten · Keine externen Dienste</span></footer>
+        </main>
       </div>
-      <footer>HTML + CSS + JavaScript · kein zusätzliches Framework · lokal testen</footer>
-    </main>
+    </div>
+
+    <dialog id="project-dialog" aria-labelledby="project-dialog-title" class="m-auto w-[calc(100%-2rem)] max-w-md rounded-2xl border border-line bg-surface p-6 text-ink shadow-xl backdrop:bg-black/40">
+      <h2 id="project-dialog-title" class="section-title">Ein neues Projekt</h2><p class="mb-5 mt-2 text-sm text-muted">Gib deiner nächsten Idee einen Namen.</p>
+      <form id="project-form" class="space-y-4"><div><label for="project-name" class="field-label">Projektname</label><input id="project-name" class="field" required maxlength="60" /></div><div><label for="project-description" class="field-label">Beschreibung</label><textarea id="project-description" class="field min-h-24" maxlength="200" placeholder="Was möchtest du erreichen?"></textarea></div><div class="flex justify-end gap-3"><button id="cancel-project" class="btn-secondary" type="button">Abbrechen</button><button class="btn-primary" type="submit">Projekt erstellen</button></div></form>
+    </dialog>
     <script>
       window.feedback = window.feedback || [];
       window.feedback.push(["init", { project: "taskboard-demo" }]);
